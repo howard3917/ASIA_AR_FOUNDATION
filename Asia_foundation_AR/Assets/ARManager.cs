@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 using System.Collections.Generic;
 
 [RequireComponent(typeof(ARRaycastManager))]
@@ -20,6 +21,12 @@ public class ARManager : MonoBehaviour
         {
             pointmouse = Input.mousePosition;
             print(pointmouse);
+
+            if(arManager.Raycast(pointmouse, hits,TrackableType.PlaneWithinPolygon))
+            {
+                Instantiate(obj, hits[0].pose.position, Quaternion.identity);
+
+            }
 
 
         }
